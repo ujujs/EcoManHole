@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./bueiro.css"/>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/x-icon" href="./logoEco.png">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons%7CMaterial+Icons+Outlined" rel="stylesheet">
+    
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons%7CMaterial+Icons+Outlined" rel="stylesheet">
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin="">
+    </script>
+    <script src="../mapa/mapa.js" defer></script>
+
+    <title> EcoManHole </title>
+</head>
+<body>
+    <div class="back-a">
+        <label>
+            <p class="nome"> Eco</p> <p class="nome">Man</p> <p class="nome">Hole</p>
+        </label>
+        <label class="sair">
+            <a href="../inicial/incial.html">
+                <i class="sair material-icons">exit_to_app</i>
+            </a>
+        </label>
+    </div>
+    <div class="back-b">
+        <div class="info">
+            <div class="infoBueiro"> 
+                <p> Status Bueiro 2: </p>
+                <p>Distancia em cm: 0 </p>
+                <p>Ultima vez limpo: 1 semana </p>
+            </div>
+            <div class="mapaBueiro"> 
+                <div id="mapid"></div> 
+            </div>
+        </div>
+        <div class="bueiro">
+            <div class="top">
+                    <p> <a href="http://localhost:1234/"> Cadastrar Bueiro </a> </p>
+                    <p> <a href="../mapa/mapa.html"> Ampliar Mapa  </a> </p>
+            </div>
+            <div class="bueiroLista">
+                <div class="pesq">
+                    <input  type="texto" placeholder="Buscar">
+                    <svg aria-hidden="false" width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="M21.707 20.293L16.314 14.9C17.403 13.504 18 11.799 18 10C18 7.863 17.167 5.854 15.656 4.344C14.146 2.832 12.137 2 10 2C7.863 2 5.854 2.832 4.344 4.344C2.833 5.854 2 7.863 2 10C2 12.137 2.833 14.146 4.344 15.656C5.854 17.168 7.863 18 10 18C11.799 18 13.504 17.404 14.9 16.314L20.293 21.706L21.707 20.293ZM10 16C8.397 16 6.891 15.376 5.758 14.243C4.624 13.11 4 11.603 4 10C4 8.398 4.624 6.891 5.758 5.758C6.891 4.624 8.397 4 10 4C11.603 4 13.109 4.624 14.242 5.758C15.376 6.891 16 8.398 16 10C16 11.603 15.376 13.11 14.242 14.243C13.109 15.376 11.603 16 10 16Z"></path></svg>        
+                </div>
+                <p> Bueiro 1 </p>
+                <p> Bueiro 2 </p>
+                <p> Bueiro 3 </p>
+                <p> Bueiro 4 </p>
+                <p> Bueiro 5 </p>
+                <p> Bueiro 6 </p>
+                <p> Bueiro 7 </p>
+                <p> Bueiro 8 </p>
+                <p> Bueiro 9 </p>
+                <p> Bueiro 10 </p>
+            </div>
+        </div>
+    </div>
+    <div class="back-c"></div>
+</body>
+</html>
+
+
