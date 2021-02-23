@@ -1,3 +1,9 @@
+// select <sin_id from sinais where id_bueiro = button.id
+
+// <button> id.bueiro ---> nome
+// <button>38 b1</button>
+
+
 import { init as initDatabase } from "./database";
 import express from "express";
 import bodyParser from "body-parser";
@@ -22,8 +28,8 @@ async function init() {
         response.json(bueiro[0]);
     });
 
-    app.get('/sinais', async function (request, response) {
-        const [rows] = await db.execute("SELECT * FROM sinais");
+    app.get('/bueiro', async function (request, response) {
+        const [rows] = await db.execute("SELECT * FROM bueiro");
         response.json(rows);
     });
 
@@ -39,7 +45,7 @@ async function init() {
     });
 
     app.post('/bueiro', async function (request, response) {
-        if (!request.body.nome || !request.body.latitude || !request.body.longitude) {
+        if (!request.body.nome || !request.body.latitude || !request.body.longitude || !request.body.id_usuario ) {
             response.json({ error: "dados incompletos." });
             return;
         }
@@ -51,7 +57,7 @@ async function init() {
                     request.body.nome,
                     request.body.latitude,
                     request.body.longitude,
-                    1
+                    request.body.id_usuario
                 ]
             );
             response.json({"lastID": responseData[0].insertId});
@@ -71,18 +77,19 @@ async function init() {
     });
 
     app.put('/bueiro/:id', async function (request, response) {
-        if (!request.body.nome || !request.body.latitude || !request.body.longitude) {
+        if (!request.body.nome || !request.body.latitude || !request.body.longitude || !request.body.id_usuario) {
             response.json({ error: "dados incompletos." });
             return;
         }
 
         try {
             const responseData = await db.execute(
-                "UPDATE bueiro SET nome=?, latitude=?, longitude=? WHERE id_bueiro=?",
+                "UPDATE bueiro SET nome=?, latitude=?, longitude=?, id_usuario=? WHERE id_bueiro=?",
                 [
                     request.body.nome,
                     request.body.latitude,
                     request.body.longitude,
+                    request.body.id_usuario,
                     request.params.id
                 ]
             );
