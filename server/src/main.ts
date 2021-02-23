@@ -22,14 +22,8 @@ app.use(bodyParser.json());
 async function init() {
     const db = await initDatabase();
 
-    app.get('/bueiro/:nome', async function (request, response) {
-        const nome = request.params.nome
-        const bueiro = await db.query(`SELECT latitude, longitude FROM bueiro WHERE nome = "${nome}"`)
-        response.json(bueiro[0]);
-    });
-
-    app.get('/bueiro', async function (request, response) {
-        const [rows] = await db.execute("SELECT * FROM bueiro");
+    app.get('/sinais/:id_bueiro', async function (request, response) {
+        const [rows] = await db.execute("SELECT sin_dist FROM sinais WHERE id_bueiro = ? ORDER BY sin_id DESC LIMIT 1", [request.params.id_bueiro]);
         response.json(rows);
     });
 
@@ -38,10 +32,15 @@ async function init() {
         response.json(rows);
     });
 
+    app.get('/bueiro/:nome', async function (request, response) {
+        const nome = request.params.nome
+        const bueiro = await db.query(`SELECT latitude, longitude FROM bueiro WHERE nome = "${nome}"`)
+        response.json(bueiro[0]);
+    });
+
     app.get('/bueiro', async function (request, response) {
-        const responseData = await db.query("SELECT id_bueiro as id, nome, latitude, longitude, id_usuario FROM bueiro");
-        response.json(responseData);
-        // response.status(201);
+        const [rows] = await db.execute("SELECT id_bueiro as id, nome, latitude, longitude, id_usuario FROM bueiro");
+        response.json(rows);
     });
 
     app.post('/bueiro', async function (request, response) {
