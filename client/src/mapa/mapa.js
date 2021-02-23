@@ -9,11 +9,13 @@ var mymap = L.map('mapid').setView([lat, log], 18);
 async function buscarBueiro() {
     const dadosBueiros = await fetch("http://localhost:3333/bueiro")
     const bueiros = await dadosBueiros.json()
-    bueiros[0].forEach(bueiro => {
+    // console.log("vou criar o popup do bueiro!")
+    // console.log(bueiros)
+    bueiros.forEach(bueiro => {
+        // console.log("estou criando o popup do bueiro!")
         const novoBueiro = L.marker([bueiro.latitude, bueiro.longitude]).addTo(mymap)
         novoBueiro.bindPopup(`<b>${bueiro.nome}</b><br>ID ${bueiro.id}`).openPopup()
-        console.log(bueiros)
-        console.log("bueiro")
+        // console.log(bueiros)
     });
 };
 buscarBueiro()
@@ -36,7 +38,7 @@ if(botaoBuscar){
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoianVsaW9iMjAwMyIsImEiOiJja2t6c2J3Ymswam5xMnBwbHBsOHRyZGlyIn0.V4Wb2VEn4mMTdSSDpy__xQ', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
-    minZoom: 12,
+    minZoom: 10,
     id: 'mapbox/streets-v11',
     tileSize: 512,
     zoomOffset: -1,

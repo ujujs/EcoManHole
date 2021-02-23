@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="./inicial.css"/>
+    <link rel="stylesheet" type="text/css" href="login.css" />
     <meta charset="UTF-8">
     <link rel="shortcut icon" type="image/x-icon" href="../assets/logoEco.png">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons%7CMaterial+Icons+Outlined" rel="stylesheet">
-    <title> EcoManHole </title>
+    <title> login-EcoManHole </title>
 </head>
+
 <body>
     <div class="back-a">
         <label>
             <p class="nome"> Eco</p> <p class="nome">Man</p> <p class="nome">Hole</p>
         </label>
+        <label class="login">
+            <p> Login Usuario </p>
+        </label>
+        <label class="sair">
+            <a href="../inicial/incial.html">
+                <i class="sair material-icons">exit_to_app</i>
+            </a>
+        </label>
     </div>
     <div class="back-b">
         <form>
-            <a href="../login/login.html">
-                <p class="loginBut"> LOGIN </p>
-            </a>
-            <a href="../cadastroU/cadastroU.html">
-                <p class="cadastrarUBut"> CADASTRAR </p>
-            </a>
-            <a href="../bueiro/bueiro.html">
-                <p class="entrarBut"> ENTRAR (teste) </p>
-            </a>
+            <p class="LoginTexto"> ID </p>
+            <input required class="LoginColocar" type="text">
+            <p class="SenhaTexto"> Senha </p>
+            <input required class="SenhaColocar" type="password">
+            <button> Entrar </button>
         </form>
     </div>
     <div class="back-c"></div>
 </body>
+
 </html>
