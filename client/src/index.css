@@ -4,7 +4,6 @@ body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
-
 body {
     display: flex;
     height: 100vh;
@@ -13,7 +12,6 @@ body {
     flex-direction: column;
     overflow: hidden;
 }
-
 main {
     width: 100%;
     height: 100%;
@@ -24,17 +22,24 @@ main {
     overflow: scroll;
     overflow-x: hidden;
 }
-
 ::-webkit-scrollbar {
     width: 0;
 }
+#content{
+    height: 70vh;
+    width: 50%;
+    overflow: auto;
 
+}
 main .new-form {
+    position: fixed;
+    top: 2%;
+    left: 30px;
     color: #f1f1f1;
     background: #03354e;
     font-weight: bold;
-    width: 30%;
-    height: 15%;
+    width: 20%;
+    height: 10%;
     border-radius: 10px;
     margin: 0;
     border: 0;
@@ -43,18 +48,21 @@ main .new-form {
     cursor: pointer;
 }
 
+/* #content xform{
+    background-color: lawngreen;   
+    width: 100%;
+} */
+
 button:focus, input:focus, select:focus {
     box-shadow: 0 0 0 0;
     outline: 0;
 } 
-
 .sair {
-    position: absolute;
+    position: fixed;
     display: flex;
-    left: 96%;
-    top: 1%;
+    right: 30px;
+    top: 2%;
 }
-
 i.sair {
     color: #073f5a;
     font-size: 3em;

@@ -7,6 +7,7 @@ export class HTMLXForm extends HTMLElement {
     private _elNome: HTMLXInput;
     private _elLatitude: HTMLXInput;
     private _elLongitude: HTMLXInput;
+    private _elIdusuario: HTMLXInput;
     private _elBtSave: HTMLButtonElement;
     private _elBtDelete: HTMLButtonElement;
 
@@ -17,6 +18,7 @@ export class HTMLXForm extends HTMLElement {
         this._elNome = <HTMLXInput>this._root.querySelector("#nome");
         this._elLatitude = <HTMLXInput>this._root.querySelector("#latitude");
         this._elLongitude = <HTMLXInput>this._root.querySelector("#longitude");
+        this._elIdusuario = <HTMLXInput>this._root.querySelector("#idusuario");
         this._elBtSave = <HTMLButtonElement>this._root.querySelector(".save");
         this._elBtDelete = <HTMLButtonElement>this._root.querySelector(".delete");
         //
@@ -24,7 +26,7 @@ export class HTMLXForm extends HTMLElement {
         this._elBtDelete.addEventListener("click", ev => this._excluir(ev));
     }
 
-    load(data: { id?: number, nome: string, latitude: number, longitude: number }) {
+    load(data: { id?: number, nome: string, latitude: number, longitude: number, id_usuario: number}) {
         if (data.id) {
             this._id = data.id;
             this._elBtSave.innerText = "Alterar";
@@ -33,6 +35,8 @@ export class HTMLXForm extends HTMLElement {
         this._elNome.value = data.nome;
         this._elLatitude.value = data.latitude.toString();
         this._elLongitude.value = data.longitude.toString();
+        this._elIdusuario.value = data.id_usuario.toString();
+
     }
 
     private _action(ev: MouseEvent) {
@@ -49,7 +53,8 @@ export class HTMLXForm extends HTMLElement {
         const data = {
             nome: this._elNome.value,
             latitude: this._elLatitude.value,
-            longitude: this._elLongitude.value
+            longitude: this._elLongitude.value,
+            id_usuario: this._elIdusuario.value
         };
 
         const configReq = {
@@ -78,7 +83,8 @@ export class HTMLXForm extends HTMLElement {
         const data = {
             nome: this._elNome.value,
             latitude: this._elLatitude.value,
-            longitude: this._elLongitude.value
+            longitude: this._elLongitude.value,
+            id_usuario: this._elIdusuario.value
         };
 
         const configReq = {

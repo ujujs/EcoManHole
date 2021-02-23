@@ -14,7 +14,6 @@ body {
     overflow: hidden;
 }
 
-
 * {
     margin: 0;
   }
@@ -196,10 +195,13 @@ i.sair {
     font-size: 1.3em;
     padding-top: 6%;
     box-shadow: 1px 1px 10px rgb(36, 36, 36);
+    transition: .2s;
 }
-
-.bueiro .top p:last-child {
-    margin-top: 5%;
+.bueiro .top p:last-child{
+    margin:5%;
+}
+.bueiro .top p:hover{
+    transform: scale(1.05);
 }
 
 .bueiro .bueiroLista {
@@ -265,5 +267,3 @@ i.sair {
     font-size: 1.3em;
     cursor: pointer;
 }
-
-

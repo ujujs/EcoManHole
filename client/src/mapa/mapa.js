@@ -12,20 +12,26 @@ async function buscarBueiro() {
     bueiros[0].forEach(bueiro => {
         const novoBueiro = L.marker([bueiro.latitude, bueiro.longitude]).addTo(mymap)
         novoBueiro.bindPopup(`<b>${bueiro.nome}</b><br>ID ${bueiro.id}`).openPopup()
-        console.log(bueiro)
+        console.log(bueiros)
+        console.log("bueiro")
     });
 };
 buscarBueiro()
 
-botaoBuscar.addEventListener("click", async () => {
-    const nomeBueiro = inputBuscar.value
-    const dadosBueiros = await fetch(`http://localhost:3333/bueiro/${nomeBueiro}`)
-    const bueiros = await dadosBueiros.json()
-    console.log(bueiros)
-    mymap.flyTo(new L.LatLng(bueiros[0].latitude, bueiros[0].longitude))
-})
-
-
+if(botaoBuscar){
+    botaoBuscar.addEventListener("click", async () => {
+        const nomeBueiro = inputBuscar.value
+        if(!nomeBueiro){
+            return
+        }
+        const dadosBueiros = await fetch(`http://localhost:3333/bueiro/${nomeBueiro}`)
+        const bueiros = await dadosBueiros.json()
+        if(!bueiros[0]){
+            return
+        }
+        mymap.flyTo(new L.LatLng(bueiros[0].latitude, bueiros[0].longitude))
+    })
+}
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoianVsaW9iMjAwMyIsImEiOiJja2t6c2J3Ymswam5xMnBwbHBsOHRyZGlyIn0.V4Wb2VEn4mMTdSSDpy__xQ', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
