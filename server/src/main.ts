@@ -1,9 +1,3 @@
-// select <sin_id from sinais where id_bueiro = button.id
-
-// <button> id.bueiro ---> nome
-// <button>38 b1</button>
-
-
 import { init as initDatabase } from "./database";
 import express from "express";
 import bodyParser from "body-parser";
@@ -21,6 +15,12 @@ app.use(bodyParser.json());
 
 async function init() {
     const db = await initDatabase();
+
+    app.get('/usuario/:id_usuario', async function (request, response) {
+        const id_usuario = request.params.nome
+        const usuario = await db.query(`SELECT senha FROM usuario WHERE id_usuario = "${id_usuario}"`)
+        response.json(usuario[0]);
+    });
 
     app.get('/sinais/:id_bueiro', async function (request, response) {
         const [rows] = await db.execute("SELECT sin_dist FROM sinais WHERE id_bueiro = ? ORDER BY sin_id DESC LIMIT 1", [request.params.id_bueiro]);
