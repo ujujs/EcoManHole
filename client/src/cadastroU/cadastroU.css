@@ -22,7 +22,7 @@ body {
 }
 
 .back-a {
-    background: #0c2635; 
+    background: #0c2635;
     height: 25vh;
     display: flex;
     align-items: center;
@@ -41,10 +41,12 @@ body {
     height: 25vh;
 }
 
-button:focus, input:focus, select:focus {
+button:focus,
+input:focus,
+select:focus {
     box-shadow: 0 0 0 0;
     outline: 0;
-} 
+}
 
 button {
     cursor: pointer;
@@ -52,7 +54,7 @@ button {
 
 a {
     color: inherit;
-}   
+}
 
 label {
     width: 100%;
@@ -78,7 +80,7 @@ label {
     width: 19%;
     font-size: 1.5em;
     background: #b7c2c8;
-    color:  #03354e;
+    color: #03354e;
     font-weight: bold;
     border-radius: 2px 2px 0 0;
 }
@@ -91,12 +93,11 @@ label {
     top: 1%;
 }
 
-
 i.sair {
     color: #ffffff;
     font-size: 3em;
     cursor: pointer;
-} 
+}
 
 .back-a label .nome {
     color: #646c6f;
@@ -111,7 +112,7 @@ i.sair {
 }
 
 .back-a label .nome:first-child {
-    color:  #03354e;
+    color: #03354e;
     padding-left: 15%;
     padding-right: 1%;
 }
@@ -119,7 +120,6 @@ i.sair {
 .back-a label .nome:last-child {
     color: #ffffff;
 }
-
 
 form {
     position: relative;

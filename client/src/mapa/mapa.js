@@ -9,26 +9,26 @@ var mymap = L.map('mapid').setView([lat, log], 18);
 async function buscarBueiro() {
     const dadosBueiros = await fetch("http://localhost:3333/bueiro")
     const bueiros = await dadosBueiros.json()
-    // console.log("vou criar o popup do bueiro!")
-    // console.log(bueiros)
+        // console.log("vou criar o popup do bueiro!")
+        // console.log(bueiros)
     bueiros.forEach(bueiro => {
         // console.log("estou criando o popup do bueiro!")
         const novoBueiro = L.marker([bueiro.latitude, bueiro.longitude]).addTo(mymap)
         novoBueiro.bindPopup(`<b>${bueiro.nome}</b><br>ID ${bueiro.id}`).openPopup()
-        // console.log(bueiros)
+            // console.log(bueiros)
     });
 };
 buscarBueiro()
 
-if(botaoBuscar){
-    botaoBuscar.addEventListener("click", async () => {
+if (botaoBuscar) {
+    botaoBuscar.addEventListener("click", async() => {
         const nomeBueiro = inputBuscar.value
-        if(!nomeBueiro){
+        if (!nomeBueiro) {
             return
         }
         const dadosBueiros = await fetch(`http://localhost:3333/bueiro/${nomeBueiro}`)
         const bueiros = await dadosBueiros.json()
-        if(!bueiros[0]){
+        if (!bueiros[0]) {
             return
         }
         mymap.flyTo(new L.LatLng(bueiros[0].latitude, bueiros[0].longitude))
