@@ -19,32 +19,40 @@ async function init() {
     // ROTAS DE USUÁRIO
 
     // CREATE
-    app.post('/usuario', async function (request, response) {
+    app.post('/register', async function (request, response) {
         const { id, senha } = request.body
 
         if (id && senha) {
             const [rows] = await db.query(`SELECT * FROM usuario WHERE id_usuario = ?`, [id])
-
-            console.log(rows)
-
-            if (!rows || rows[0] != '') {
+            if (!rows[0]) {
                 const usuario = await db.execute(`INSERT INTO usuario (id_usuario,senha) VALUES (?, ?)`,
                     [
                         id,
                         senha
-                    ]
-                )
-
-                return response.status(200).json({ usuario })
+                    ])
+                return response.status(200).json({ info: 'Usuário criado com sucesso' })
             }
-
             return response.status(400).json({ erro: 'ID em uso' })
         }
-
         return response.status(400).json({ erro: 'Campos inválidos' })
     })
 
     // AUTH
+    app.post('/login', async (request, response) => {
+        const { id, senha } = request.body
+        const check = await db.query(`SELECT * FROM usuario WHERE id_usuario = ? AND senha = ?`, [
+            id,
+            senha
+        ])
+        if (id && senha) {
+            if (check[0] != '') {
+                console.log(check[0])
+                return response.status(200).json({ auth: true })
+            }
+            return response.status(401).json({ erro: 'ID e/ou senha inválido(s)' })
+        }
+        return response.status(400).json({ erro: 'Campos inválidos' })
+    })
 
     // ------------------------------------------------------------------------------------- //
 
@@ -144,7 +152,7 @@ async function init() {
         }
     });
 
-    app.listen(3333, () => console.log("running..."));
+    app.listen(3351, () => console.log("running..."));
 }
 
 init();
