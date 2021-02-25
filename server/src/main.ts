@@ -16,6 +16,38 @@ app.use(bodyParser.json());
 async function init() {
     const db = await initDatabase();
 
+    // ROTAS DE USUÁRIO
+
+    // CREATE
+    app.post('/usuario', async function (request, response) {
+        const { id, senha } = request.body
+
+        if (id && senha) {
+            const [rows] = await db.query(`SELECT * FROM usuario WHERE id_usuario = ?`, [id])
+
+            console.log(rows)
+
+            if (!rows || rows[0] != '') {
+                const usuario = await db.execute(`INSERT INTO usuario (id_usuario,senha) VALUES (?, ?)`,
+                    [
+                        id,
+                        senha
+                    ]
+                )
+
+                return response.status(200).json({ usuario })
+            }
+
+            return response.status(400).json({ erro: 'ID em uso' })
+        }
+
+        return response.status(400).json({ erro: 'Campos inválidos' })
+    })
+
+    // AUTH
+
+    // ------------------------------------------------------------------------------------- //
+
     app.get('/usuario/:id_usuario', async function (request, response) {
         const id_usuario = request.params.nome
         const usuario = await db.query(`SELECT senha FROM usuario WHERE id_usuario = "${id_usuario}"`)
@@ -44,7 +76,7 @@ async function init() {
     });
 
     app.post('/bueiro', async function (request, response) {
-        if (!request.body.nome || !request.body.latitude || !request.body.longitude || !request.body.id_usuario ) {
+        if (!request.body.nome || !request.body.latitude || !request.body.longitude || !request.body.id_usuario) {
             response.json({ error: "dados incompletos." });
             return;
         }
@@ -59,7 +91,7 @@ async function init() {
                     request.body.id_usuario
                 ]
             );
-            response.json({"lastID": responseData[0].insertId});
+            response.json({ "lastID": responseData[0].insertId });
         } catch (e) {
             response.json({ error: "database error", detail: e });
         }
