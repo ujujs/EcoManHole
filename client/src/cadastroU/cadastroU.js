@@ -1,34 +1,47 @@
-// const inputs = document.getElementsByTagName('input');
-// const form = document.getElementById('form');
+const host = "http://localhost:3333";
+        const form = document.querySelector("form")
 
-// console.log(inputs[6]);
+        
+        form.addEventListener("submit", async function (ev) {
+            ev.preventDefault()
+            const login = document.querySelector('[name="login"]').value
+            const senha = document.querySelector('[name="senha"]').value
+            const resposta = await adicionarUsuario({
+                login,
+                senha
+            })
 
-// form.addEventListener('submit', async e => {
-//     e.preventDefault();
+            if (resposta.erro) {
+                alert(resposta.erro)
+            }
+            else {
+                alert("Cadastrado com sucesso")
+                // window.location = "../bueiro/bueiro.html"
+            }
+        })
+        async function buscarUsuariosLogados() {
+            const configReq = { method: "get" };
+            const req = await fetch(host + "/usuario")
+            const res = await req.json();
+            return res;
+        }
 
-//     const dadosFormulario = new FormData(form);
+        async function adicionarUsuario(dadosUsuario) {
+            const configReq = {
+                method: "post",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(dadosUsuario)
+            };
+            console.log((dadosUsuario));
+            
+            const req = await fetch(host + "/usuario", configReq);
+            const res = await req.json();
+            return res;
+        }
 
-
-//     await fetch('http://localhost:3333/usuarios', {
-//         method: 'post',
-//         body: dadosFormulario,
-//     }).then(async response => {
-//         e.preventDefault();
-//         return await response.text();
-//     }).then(conteudo => {
-//         e.preventDefault();
-
-//         if (JSON.parse(conteudo).mensagem) {
-//             return alert(JSON.parse(conteudo).mensagem);
-//         }
-
-//         window.location.href = 'http://127.0.0.1:5500/EcoManHole/Cadastro-Pessoa/client/src/login/login.html'
-//     });
-
-// });
-
-// const usuario = JSON.parse(localStorage.getItem('usuarioEco'));
-
-// if (usuario) {
-//     window.location.href = 'http://127.0.0.1:5500/EcoManHole/Cadastro-Pessoa/client/src/bueiro/bueiro.html';
-// }
+        async function buscarUsuario(id) {
+            const configReq = { method: "get" };
+            const req = await fetch(host + "/usuario/" + id)
+            const res = await req.json();
+            return res;
+        }

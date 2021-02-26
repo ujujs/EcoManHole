@@ -63,7 +63,7 @@ export class HTMLXForm extends HTMLElement {
             body: JSON.stringify(data)
         };
 
-        const req = await fetch("http://localhost:3333/bueiro", configReq);
+        const req = await fetch("http:st:3333//localhost/bueiro", configReq);
         const res = await req.json();
 
         if (req.status == 200) {
